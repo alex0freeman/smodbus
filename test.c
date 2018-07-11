@@ -3,7 +3,7 @@
 
 #define showhex(x) \
     do{\
-        printf("\n%s.check(%d)<%04X==%04X>:", __func__, MS_check(x), MS_crc(x), MS_calc(x));\
+        printf("\n%s(%d):", __func__, MS_check(x));\
 		MS_show(x);\
     }while(0)
 

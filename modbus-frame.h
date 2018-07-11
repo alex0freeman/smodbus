@@ -80,12 +80,14 @@
 #define S15_offset(x)     ( get_word(S15(x).offset) )
 #define S15_count(x)      ( S15(x).bcount * 8 )
 #define S15_bcount(x)     ( S15(x).bcount )
+#define S15_bit(x,i)      ( get_bit(S15(x).value[i],i) )
 
 #define S16_slave(x)      ( S16(x).slave )
 #define S16_fcode(x)      ( S16(x).fcode )
 #define S16_offset(x)     ( get_word(S16(x).offset) )
 #define S16_count(x)      ( S16(x).bcount / 2 )
 #define S16_bcount(x)     ( S16(x).bcount )
+#define S16_value(x,i)    ( get_word(S16(x).value[i]) )
 
 /*============================== set slaver ====================================*/
 
