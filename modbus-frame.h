@@ -412,6 +412,8 @@
         (M16_fcode(x) == 16) ? (M16_crc(x) == M16_calc(x)) : 0)
 
 //master slaver common
+#define MS_slave(x)  ( S1_slave(x) )
+#define MS_fcode(x)  ( S1_fcode(x) )
 #define MS_len(x)    ( M_check(x) ? M_len(x)  : S_len(x)  )
 #define MS_crc(x)    ( M_check(x) ? M_crc(x)  : S_crc(x)  )
 #define MS_calc(x)   ( M_check(x) ? M_calc(x) : S_calc(x) )
