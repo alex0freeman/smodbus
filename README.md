@@ -8,7 +8,7 @@ A simple implementation of modbus, written by pure C code
 #define showhex(x) \
     do{\
         printf("\n%s(%d):", __func__, MS_check(x));\
-		MS_show(x);\
+        MS_show(x);\
     }while(0)
 
 //test slaver
@@ -243,7 +243,7 @@ int main(void)
     test_slaver_x06();
     test_slaver_x0f();
     test_slaver_x10();
-	printf("\n");
+    printf("\n");
     test_master_x01();
     test_master_x02();
     test_master_x03();
@@ -255,6 +255,5 @@ int main(void)
 
     return 0;
 }
-
 ```c
 
