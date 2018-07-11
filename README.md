@@ -1,6 +1,16 @@
 # smodbus
 A simple implementation of modbus, written by pure C code
 
+# 文件说明
+## modbus-frame.h
+用宏封装了0x01、0x02、0x03、0x04、0x05、0x06、0x0f、0x10这几条指令
+## modbus-frome.c
+实现了modbus crc计算函数
+## modbus-show.h
+彩色打印modbus数据帧
+## color.h
+色彩定义
+
 ```c
 #include <stdio.h>
 #include "modbus-show.h"
