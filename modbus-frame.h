@@ -15,7 +15,9 @@
 #define set_crc(x,v)      ( set_word(x,v) )
 
 //bit operate
-#define bit_index(i)      ( ((i) / 8) )
+#define word_index(i)     ( (i) % (0x7D * 1) )
+#define byte_index(i)     ( (i) % (0x7D * 2) )
+#define bit_index(i)      ( byte_index((i) / 8) )
 #define bit_offset(i)     ( ((i) % 8) )
 #define get_bit(x,i)      ( (xbyte(x) >> bit_offset(i)) & 1 )
 #define set_bit(x,i,v)    ( (v) ? (xbyte(x) |= (1 << bit_offset(i))) : (xbyte(x) &= ~(1 << bit_offset(i))) )
@@ -80,14 +82,14 @@
 #define S15_offset(x)     ( get_word(S15(x).offset) )
 #define S15_count(x)      ( S15(x).bcount * 8 )
 #define S15_bcount(x)     ( S15(x).bcount )
-#define S15_bit(x,i)      ( get_bit(S15(x).value[i],i) )
+#define S15_bit(x,i)      ( get_bit(S15(x).value[bit_index(i)],i) )
 
 #define S16_slave(x)      ( S16(x).slave )
 #define S16_fcode(x)      ( S16(x).fcode )
 #define S16_offset(x)     ( get_word(S16(x).offset) )
 #define S16_count(x)      ( S16(x).bcount / 2 )
 #define S16_bcount(x)     ( S16(x).bcount )
-#define S16_value(x,i)    ( get_word(S16(x).value[i]) )
+#define S16_value(x,i)    ( get_word(S16(x).value[word_index(i)]) )
 
 /*============================== set slaver ====================================*/
 
@@ -134,7 +136,7 @@
 #define S16_set_offset(x,v)   ( set_word(S16(x).offset, v) )
 #define S16_set_bcount(x,v)   ( S16(x).bcount = 0xff & (v) )
 #define S16_set_count(x,v)    ( S16(x).bcount = 0xff & ((v) * 2) )
-#define S16_set_value(x,i,v)  ( set_word(S16(x).value[i], v) )
+#define S16_set_value(x,i,v)  ( set_word(S16(x).value[word_index(i)], v) )
 
 //slaver get len
 #define S1_len(x)             ( 1 + 1 + 2 + 2 + 2 )
@@ -245,13 +247,13 @@
 #define M3_fcode(x)       ( M3(x).fcode )
 #define M3_count(x)       ( M3(x).bcount / 2 )
 #define M3_bcount(x)      ( M3(x).bcount )
-#define M3_get_value(x,i) ( get_word(M3(x).value[i]) )
+#define M3_get_value(x,i) ( get_word(M3(x).value[word_index(i)]) )
 
 #define M4_slave(x)       ( M4(x).slave )
 #define M4_fcode(x)       ( M4(x).fcode )
 #define M4_count(x)       ( M4(x).bcount / 2 )
 #define M4_bcount(x)      ( M4(x).bcount )
-#define M4_get_value(x,i) ( get_word(M4(x).value[i]) )
+#define M4_get_value(x,i) ( get_word(M4(x).value[word_index(i)]) )
 
 #define M5_slave(x)       ( M5(x).slave )
 #define M5_fcode(x)       ( M5(x).fcode )
@@ -292,13 +294,13 @@
 #define M3_set_fcode(x)      ( M3(x).fcode   = 0xff & (3)  )
 #define M3_set_count(x,v)    ( M3(x).bcount  = 0xff & ((v)*2)  )
 #define M3_set_bcount(x,v)   ( M3(x).bcount  = 0xff & (v)  )
-#define M3_set_value(x,i,v)  ( set_word(M3(x).value[i], v) )
+#define M3_set_value(x,i,v)  ( set_word(M3(x).value[word_index(i)], v) )
 
 #define M4_set_slave(x,v)    ( M4(x).slave   = 0xff & (v)  )
 #define M4_set_fcode(x)      ( M4(x).fcode   = 0xff & (4)  )
 #define M4_set_count(x,v)    ( M4(x).bcount  = 0xff & ((v)*2)  )
 #define M4_set_bcount(x,v)   ( M4(x).bcount  = 0xff & (v)  )
-#define M4_set_value(x,i,v)  ( set_word(M4(x).value[i], v) )
+#define M4_set_value(x,i,v)  ( set_word(M4(x).value[word_index(i)], v) )
 
 #define M5_set_slave(x,v)    ( M5(x).slave  = 0xff & (v) )
 #define M5_set_fcode(x)      ( M5(x).fcode  = 0xff & (5) )

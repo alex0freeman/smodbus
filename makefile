@@ -1,4 +1,4 @@
-ARCH:=arm-linux-
+#ARCH:=arm-linux-
 CC:=$(ARCH)gcc
 STRIP:=$(ARCH)strip
 TARGET:= modbus-frame.exe
