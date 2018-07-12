@@ -222,7 +222,7 @@ void test_master_x10(void)
 
     M16_set_slave(x,1);
     M16_set_fcode(x);
-    M16_set_offset(x,0);
+    M16_set_offset(x,0xfff8);
     M16_set_count(x,8);
     M15_fill_crc(x);
 

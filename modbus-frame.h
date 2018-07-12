@@ -220,6 +220,15 @@
         (S15_fcode(x) == 15) ? (S15_calc(x)) : \
         (S16_fcode(x) == 16) ? (S16_calc(x)) : 0)
 
+#define S1_check_offset(x)   ((S1_offset(x) + S1_count(x)) <= 0x10000)
+#define S2_check_offset(x)   ((S2_offset(x) + S2_count(x)) <= 0x10000)
+#define S3_check_offset(x)   ((S3_offset(x) + S3_count(x)) <= 0x10000)
+#define S4_check_offset(x)   ((S4_offset(x) + S4_count(x)) <= 0x10000)
+#define S5_check_offset(x)   ((S5_offset(x) + (1)) <= 0x10000)
+#define S6_check_offset(x)   ((S6_offset(x) + (1)) <= 0x10000)
+#define S15_check_offset(x)  ((S15_offset(x) + S15_count(x)) <= 0x10000)
+#define S16_check_offset(x)  ((S16_offset(x) + S16_count(x)) <= 0x10000)
+
 #define S1_check_count(x)    (S1_count(x) < (0x7D * 2 * 8 + 1))
 #define S2_check_count(x)    (S2_count(x) < (0x7D * 2 * 8 + 1))
 #define S3_check_count(x)    (S3_count(x) < (0x7D * 1 * 1 + 1))
@@ -239,14 +248,15 @@
 #define S16_check_crc(x)     (S16_crc(x) == S16_calc(x))
 
 #define S_check(x) (\
-        (S1_fcode(x) == 1) ? (S1_check_crc(x) && S1_check_count(x)) : \
-        (S2_fcode(x) == 2) ? (S2_check_crc(x) && S2_check_count(x)) : \
-        (S3_fcode(x) == 3) ? (S3_check_crc(x) && S3_check_count(x)) : \
-        (S4_fcode(x) == 4) ? (S4_check_crc(x) && S4_check_count(x)) : \
-        (S5_fcode(x) == 5) ? (S5_check_crc(x) && S5_check_count(x)) : \
-        (S6_fcode(x) == 6) ? (S6_check_crc(x) && S6_check_count(x)) : \
-        (S15_fcode(x) == 15) ? (S15_check_crc(x) && S15_check_count(x)) : \
-        (S16_fcode(x) == 16) ? (S16_check_crc(x) && S16_check_count(x)) : 0)
+        (S1_fcode(x) == 1) ? (S1_check_crc(x) && S1_check_count(x) && S1_check_offset(x)) : \
+        (S2_fcode(x) == 2) ? (S2_check_crc(x) && S2_check_count(x) && S2_check_offset(x)) : \
+        (S3_fcode(x) == 3) ? (S3_check_crc(x) && S3_check_count(x) && S3_check_offset(x)) : \
+        (S4_fcode(x) == 4) ? (S4_check_crc(x) && S4_check_count(x) && S4_check_offset(x)) : \
+        (S5_fcode(x) == 5) ? (S5_check_crc(x) && S5_check_count(x) && S5_check_offset(x)) : \
+        (S6_fcode(x) == 6) ? (S6_check_crc(x) && S6_check_count(x) && S6_check_offset(x)) : \
+        (S15_fcode(x) == 15) ? (S15_check_crc(x) && S15_check_count(x) && S15_check_offset(x)) : \
+        (S16_fcode(x) == 16) ? (S16_check_crc(x) && S16_check_count(x) && S16_check_offset(x)) : 0)
+
 /*============================== get master =================================*/
 
 //get slave
@@ -422,6 +432,15 @@
         (M15_fcode(x) == 15) ? (M15_calc(x)) : \
         (M16_fcode(x) == 16) ? (M16_calc(x)) : 0)
 
+#define M1_check_offset(x)   (1)
+#define M2_check_offset(x)   (1)
+#define M3_check_offset(x)   (1)
+#define M4_check_offset(x)   (1)
+#define M5_check_offset(x)   (1)
+#define M6_check_offset(x)   (1)
+#define M15_check_offset(x)  ((M15_offset(x) + M15_count(x)) <= 0x10000)
+#define M16_check_offset(x)  ((M16_offset(x) + M16_count(x)) <= 0x10000)
+
 #define M1_check_count(x)    (M1_count(x) < (0x7D * 2 * 8 + 1))
 #define M2_check_count(x)    (M2_count(x) < (0x7D * 2 * 8 + 1))
 #define M3_check_count(x)    (M3_count(x) < (0x7D * 1 * 1 + 1))
@@ -441,14 +460,14 @@
 #define M16_check_crc(x)     (M16_crc(x) == M16_calc(x))
 
 #define M_check(x) (\
-        (M1_fcode(x) == 1) ? (M1_check_crc(x) && M1_check_count(x)) : \
-        (M2_fcode(x) == 2) ? (M2_check_crc(x) && M2_check_count(x)) : \
-        (M3_fcode(x) == 3) ? (M3_check_crc(x) && M3_check_count(x)) : \
-        (M4_fcode(x) == 4) ? (M4_check_crc(x) && M4_check_count(x)) : \
-        (M5_fcode(x) == 5) ? (M5_check_crc(x) && M5_check_count(x)) : \
-        (M6_fcode(x) == 6) ? (M6_check_crc(x) && M6_check_count(x)) : \
-        (M15_fcode(x) == 15) ? (M15_check_crc(x) && M15_check_count(x)) : \
-        (M16_fcode(x) == 16) ? (M16_check_crc(x) && M16_check_count(x)) : 0)
+        (M1_fcode(x) == 1) ? (M1_check_crc(x) && M1_check_count(x) && M1_check_offset(x)) : \
+        (M2_fcode(x) == 2) ? (M2_check_crc(x) && M2_check_count(x) && M2_check_offset(x)) : \
+        (M3_fcode(x) == 3) ? (M3_check_crc(x) && M3_check_count(x) && M3_check_offset(x)) : \
+        (M4_fcode(x) == 4) ? (M4_check_crc(x) && M4_check_count(x) && M4_check_offset(x)) : \
+        (M5_fcode(x) == 5) ? (M5_check_crc(x) && M5_check_count(x) && M5_check_offset(x)) : \
+        (M6_fcode(x) == 6) ? (M6_check_crc(x) && M6_check_count(x) && M6_check_offset(x)) : \
+        (M15_fcode(x) == 15) ? (M15_check_crc(x) && M15_check_count(x) && M15_check_offset(x)) : \
+        (M16_fcode(x) == 16) ? (M16_check_crc(x) && M16_check_count(x) && M16_check_offset(x)) : 0)
 
 //master slaver common
 #define MS_slave(x)  ( S1_slave(x) )
