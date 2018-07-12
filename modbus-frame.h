@@ -24,26 +24,26 @@
 #define set_bit(x,i,v)    ( (v) ? (xbyte(x) |= (1 << bit_offset(i))) : (xbyte(x) &= ~(1 << bit_offset(i))) )
 
 //slaver struct macro
-#define S1(x)             (xframe(x).slaverx01)
-#define S2(x)             (xframe(x).slaverx02)
-#define S3(x)             (xframe(x).slaverx03)
-#define S4(x)             (xframe(x).slaverx04)
-#define S5(x)             (xframe(x).slaverx05)
-#define S6(x)             (xframe(x).slaverx06)
-#define S6(x)             (xframe(x).slaverx06)
-#define S15(x)            (xframe(x).slaverx0f)
-#define S16(x)            (xframe(x).slaverx10)
+#define S1(x)             ( xframe(x).slaverx01 )
+#define S2(x)             ( xframe(x).slaverx02 )
+#define S3(x)             ( xframe(x).slaverx03 )
+#define S4(x)             ( xframe(x).slaverx04 )
+#define S5(x)             ( xframe(x).slaverx05 )
+#define S6(x)             ( xframe(x).slaverx06 )
+#define S6(x)             ( xframe(x).slaverx06 )
+#define S15(x)            ( xframe(x).slaverx0f )
+#define S16(x)            ( xframe(x).slaverx10 )
 
 //master struct macro
-#define M1(x)             (xframe(x).masterx01)
-#define M2(x)             (xframe(x).masterx02)
-#define M3(x)             (xframe(x).masterx03)
-#define M4(x)             (xframe(x).masterx04)
-#define M5(x)             (xframe(x).masterx05)
-#define M6(x)             (xframe(x).masterx06)
-#define M6(x)             (xframe(x).masterx06)
-#define M15(x)            (xframe(x).masterx0f)
-#define M16(x)            (xframe(x).masterx10)
+#define M1(x)             ( xframe(x).masterx01 )
+#define M2(x)             ( xframe(x).masterx02 )
+#define M3(x)             ( xframe(x).masterx03 )
+#define M4(x)             ( xframe(x).masterx04 )
+#define M5(x)             ( xframe(x).masterx05 )
+#define M6(x)             ( xframe(x).masterx06 )
+#define M6(x)             ( xframe(x).masterx06 )
+#define M15(x)            ( xframe(x).masterx0f )
+#define M16(x)            ( xframe(x).masterx10 )
 
 /*============================== get slaver =================================*/
 
@@ -170,14 +170,14 @@
 #define S16_crc(x)            ( get_crc(S16_crcp(x)) )
 
 //slaver fill crc macro
-#define S1_calc(x)            ( modbus_crc((x).data, S1_len(x)-2)  )
-#define S2_calc(x)            ( modbus_crc((x).data, S2_len(x)-2)  )
-#define S3_calc(x)            ( modbus_crc((x).data, S3_len(x)-2)  )
-#define S4_calc(x)            ( modbus_crc((x).data, S4_len(x)-2)  )
-#define S5_calc(x)            ( modbus_crc((x).data, S5_len(x)-2)  )
-#define S6_calc(x)            ( modbus_crc((x).data, S6_len(x)-2)  )
-#define S15_calc(x)           ( modbus_crc((x).data, S15_len(x)-2) )
-#define S16_calc(x)           ( modbus_crc((x).data, S16_len(x)-2) )
+#define S1_calc(x)            ( modbus_crc(xframe(x).data, S1_len(x)-2)  )
+#define S2_calc(x)            ( modbus_crc(xframe(x).data, S2_len(x)-2)  )
+#define S3_calc(x)            ( modbus_crc(xframe(x).data, S3_len(x)-2)  )
+#define S4_calc(x)            ( modbus_crc(xframe(x).data, S4_len(x)-2)  )
+#define S5_calc(x)            ( modbus_crc(xframe(x).data, S5_len(x)-2)  )
+#define S6_calc(x)            ( modbus_crc(xframe(x).data, S6_len(x)-2)  )
+#define S15_calc(x)           ( modbus_crc(xframe(x).data, S15_len(x)-2) )
+#define S16_calc(x)           ( modbus_crc(xframe(x).data, S16_len(x)-2) )
 
 //slaver fill crc
 #define S1_fill_crc(x)        ( set_crc(S1_crcp(x), S1_calc(x))   )
@@ -354,14 +354,14 @@
 #define M16_crc(x)           ( get_crc(M16_crcp(x)) )
 
 //master fill crc macro
-#define M1_calc(x)           ( modbus_crc((x).data, M1_len(x)-2)  )
-#define M2_calc(x)           ( modbus_crc((x).data, M2_len(x)-2)  )
-#define M3_calc(x)           ( modbus_crc((x).data, M3_len(x)-2)  )
-#define M4_calc(x)           ( modbus_crc((x).data, M4_len(x)-2)  )
-#define M5_calc(x)           ( modbus_crc((x).data, M5_len(x)-2)  )
-#define M6_calc(x)           ( modbus_crc((x).data, M6_len(x)-2)  )
-#define M15_calc(x)          ( modbus_crc((x).data, M15_len(x)-2) )
-#define M16_calc(x)          ( modbus_crc((x).data, M16_len(x)-2) )
+#define M1_calc(x)           ( modbus_crc(xframe(x).data, M1_len(x)-2)  )
+#define M2_calc(x)           ( modbus_crc(xframe(x).data, M2_len(x)-2)  )
+#define M3_calc(x)           ( modbus_crc(xframe(x).data, M3_len(x)-2)  )
+#define M4_calc(x)           ( modbus_crc(xframe(x).data, M4_len(x)-2)  )
+#define M5_calc(x)           ( modbus_crc(xframe(x).data, M5_len(x)-2)  )
+#define M6_calc(x)           ( modbus_crc(xframe(x).data, M6_len(x)-2)  )
+#define M15_calc(x)          ( modbus_crc(xframe(x).data, M15_len(x)-2) )
+#define M16_calc(x)          ( modbus_crc(xframe(x).data, M16_len(x)-2) )
 
 //master fill crc
 #define M1_fill_crc(x)       ( set_crc(M1_crcp(x), M1_calc(x))  )

@@ -231,6 +231,10 @@ void test_master_x10(void)
 
 int main(void)
 {
+	char data[256];
+
+	MS_check(data[0]);
+
     test_slaver_x01();
     test_slaver_x02();
     test_slaver_x03();
