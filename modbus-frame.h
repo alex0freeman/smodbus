@@ -496,9 +496,51 @@ struct word
     unsigned char h;
     unsigned char l;
 };
+typedef struct bit  bit_t;
+typedef struct word word_t;
 
 //slaver frame
 struct slaverx01
+{
+    unsigned char slave;
+    unsigned char fcode;
+    struct word offset;
+    struct word count;
+    struct word crc;
+};
+struct slaverx02
+{
+    unsigned char slave;
+    unsigned char fcode;
+    struct word offset;
+    struct word count;
+    struct word crc;
+};
+struct slaverx03
+{
+    unsigned char slave;
+    unsigned char fcode;
+    struct word offset;
+    struct word count;
+    struct word crc;
+};
+struct slaverx04
+{
+    unsigned char slave;
+    unsigned char fcode;
+    struct word offset;
+    struct word count;
+    struct word crc;
+};
+struct slaverx05
+{
+    unsigned char slave;
+    unsigned char fcode;
+    struct word offset;
+    struct word count;
+    struct word crc;
+};
+struct slaverx06
 {
     unsigned char slave;
     unsigned char fcode;
@@ -523,11 +565,11 @@ struct slaverx10
     struct word value[1];
 };
 typedef struct slaverx01 slaverx01_t;
-typedef struct slaverx01 slaverx02_t;
-typedef struct slaverx01 slaverx03_t;
-typedef struct slaverx01 slaverx04_t;
-typedef struct slaverx01 slaverx05_t;
-typedef struct slaverx01 slaverx06_t;
+typedef struct slaverx02 slaverx02_t;
+typedef struct slaverx03 slaverx03_t;
+typedef struct slaverx04 slaverx04_t;
+typedef struct slaverx05 slaverx05_t;
+typedef struct slaverx06 slaverx06_t;
 typedef struct slaverx0f slaverx0f_t;
 typedef struct slaverx10 slaverx10_t;
 
@@ -539,7 +581,21 @@ struct masterx01
     unsigned char bcount;
     struct bit value[1];
 };
+struct masterx02
+{
+    unsigned char slave;
+    unsigned char fcode;
+    unsigned char bcount;
+    struct bit value[1];
+};
 struct masterx03
+{
+    unsigned char slave;
+    unsigned char fcode;
+    unsigned char bcount;
+    struct word value[1];
+};
+struct masterx04
 {
     unsigned char slave;
     unsigned char fcode;
@@ -554,37 +610,61 @@ struct masterx05
     struct word count;
     struct word crc;
 };
+struct masterx06
+{
+    unsigned char slave;
+    unsigned char fcode;
+    struct word offset;
+    struct word count;
+    struct word crc;
+};
+struct masterx0f
+{
+    unsigned char slave;
+    unsigned char fcode;
+    struct word offset;
+    struct word count;
+    struct word crc;
+};
+struct masterx10
+{
+    unsigned char slave;
+    unsigned char fcode;
+    struct word offset;
+    struct word count;
+    struct word crc;
+};
 typedef struct masterx01 masterx01_t;
-typedef struct masterx01 masterx02_t;
+typedef struct masterx02 masterx02_t;
 typedef struct masterx03 masterx03_t;
-typedef struct masterx03 masterx04_t;
+typedef struct masterx04 masterx04_t;
 typedef struct masterx05 masterx05_t;
-typedef struct masterx05 masterx06_t;
-typedef struct masterx05 masterx0f_t;
-typedef struct masterx05 masterx10_t;
+typedef struct masterx06 masterx06_t;
+typedef struct masterx0f masterx0f_t;
+typedef struct masterx10 masterx10_t;
 
 //modbus frame
 typedef union modbus_frame
 {
     unsigned char data[256];
 
-    slaverx01_t  slaverx01;
-    slaverx02_t  slaverx02;
-    slaverx03_t  slaverx03;
-    slaverx04_t  slaverx04;
-    slaverx05_t  slaverx05;
-    slaverx06_t  slaverx06;
-    slaverx0f_t  slaverx0f;
-    slaverx10_t  slaverx10;
+    struct slaverx01  slaverx01;
+    struct slaverx02  slaverx02;
+    struct slaverx03  slaverx03;
+    struct slaverx04  slaverx04;
+    struct slaverx05  slaverx05;
+    struct slaverx06  slaverx06;
+    struct slaverx0f  slaverx0f;
+    struct slaverx10  slaverx10;
 
-    masterx01_t  masterx01;
-    masterx02_t  masterx02;
-    masterx03_t  masterx03;
-    masterx04_t  masterx04;
-    masterx05_t  masterx05;
-    masterx06_t  masterx06;
-    masterx0f_t  masterx0f;
-    masterx10_t  masterx10;
+    struct masterx01  masterx01;
+    struct masterx02  masterx02;
+    struct masterx03  masterx03;
+    struct masterx04  masterx04;
+    struct masterx05  masterx05;
+    struct masterx06  masterx06;
+    struct masterx0f  masterx0f;
+    struct masterx10  masterx10;
 }modbus_frame_t;
 
 unsigned short modbus_crc(unsigned char*, unsigned short); 
